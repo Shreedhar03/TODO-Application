@@ -178,7 +178,7 @@ export default function Dashboard() {
                       }}>
                       <input type="text" value={taskInput} onChange={(e) => {
                         setTaskInput(e.target.value)
-                      }} placeholder='Add Task' autoFocus className='border-2 border-gray-800 outline-none text-xl px-3 py-1 rounded-lg w-full bg-transparent' />
+                      }} placeholder='Add Task' autoFocus className='relative border-2 border-gray-800 outline-none text-xl px-3 py-1 rounded-lg w-full bg-transparent' />
                       <input type='submit' value={'+'} className='themebg text-4xl px-3 rounded-lg text-black cursor-pointer' />
                     </form>
 
@@ -206,8 +206,8 @@ export default function Dashboard() {
 
                       // console.log(item);
                       return (
-                        <div key={item.id} className={`flex w-[75vw] lg:w-[30vw] px-12 py-2 rounded-lg ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} items-center justify-between`}>
-                          <h1 className='text-2xl overflow-scroll w-full'>{item.name}</h1>
+                        <div key={item.id} className={`flex w-[95vw] h-auto lg:w-[30vw] px-4 py-2 rounded-lg ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} items-center justify-between`}>
+                          <h1 className='text-2xl break-none overflow-x-scroll w-full h-full'>{item.name}</h1>
 
                           <div className="icons flex gap-4 pl-3">
                             <i className='bx bx-edit theme text-xl cursor-pointer'
