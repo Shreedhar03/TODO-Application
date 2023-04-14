@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Sora&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Sora';
+  box-sizing: border-box;
+}
+.theme{
+  color: #ec360e!important;
+}
+.themebg{
+  background-color: #ec360e!important;
+}
+.redbg{
+  background-color: #d70404!important;
+}
+::placeholder{
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  transform: translate(-7%,-50%);
+}
+body{
+  user-select: none;
+}
+::-webkit-scrollbar{
+  display: none;
+}
