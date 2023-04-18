@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 export default function WelcomePage() {
 
-    const {dark} = useContext(AppContext)
+    // const {dark} = useContext(AppContext)
     
 
     // let navigate = useNavigate()
