@@ -8,7 +8,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`flex-none logo ${dark ? 'bg-black' : ''} flex items-center justify-around md:justify-between md:px-24 pt-4 pb-12`}>
+            <nav className={`flex-none logo flex items-center justify-around md:justify-between md:px-24 pt-4 pb-12`}>
 
                 <div className="logo flex items-center">
                     {/* <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -23,11 +23,12 @@ export default function Navbar() {
                 </div>
 
                 <div className="mode">
-                    <p className={`${dark ? 'text-white' : ''} cursor-pointer`} onClick={() => {
+                    <p className={`cursor-pointer`} onClick={() => {
                         setDark(!dark)
-                        document.body.classList.toggle('bg-black')
+                        
                     }}>
                         <i className={`bx ${!dark ? 'bx-moon' : 'bx-sun'} text-2xl`}></i>
+                        {/* {`bx ${!dark ? 'bx-moon' : 'bx-sun'} text-2xl`} */}
                     </p>
                 </div>
 
@@ -35,3 +36,4 @@ export default function Navbar() {
         </>
     )
 }
+

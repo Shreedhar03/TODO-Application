@@ -105,6 +105,8 @@ export default function Dashboard() {
     }
   }
 
+
+  // localStorage.clear()
   return (
     <>
 
@@ -122,11 +124,11 @@ export default function Dashboard() {
             }}>
             {/* Get Name of the User */}
 
-            <h1 className={`text-3xl text-center md:text-5xl ${dark ? 'text-white' : 'text-black'}`}>We just need your name to get Started :)</h1>
+            <h1 className={`text-3xl text-center md:text-5xl`}>We just need your name to get Started :)</h1>
 
             <div className="inputs flex flex-col gap-4 justify-center mx-8 md:mx-0 max-w-[85vw] md:max-w-sm">
               <input type='text' value={input}
-                onChange={(e) => setInput(e.target.value)} autoFocus className={`px-12 text-2xl py-2 focus:outline-none rounded-lg ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'}`} />
+                onChange={(e) => setInput(e.target.value)} autoFocus className={`px-12 text-2xl py-2 focus:outline-none rounded-lg `} />
               <input type="submit" value="Submit&rarr;" className='themebg text-2xl py-2 rounded-lg text-black cursor-pointer' />
             </div>
 
@@ -135,10 +137,10 @@ export default function Dashboard() {
           :   // ternary operator
 
           <>
-            <div className='flex flex-col lg:flex-row justify-start'>
+            <div className={`flex flex-col lg:flex-row justify-start`}>
 
               <section className="left py-10 lg:w-[50vw]">
-                <div className={`${dark ? 'text-white' : 'text-black'} mx-4 sm:mx-16 lg:mx-24 flex flex-col items-start gap-10`}>
+                <div className={`mx-4 sm:mx-16 lg:mx-24 flex flex-col items-start gap-10`}>
 
                   <div className="top break-word">
                     <h1 className='text-3xl'>{`${setWish()}, ${localStorage.getItem('localUser')}`}</h1>
@@ -168,9 +170,9 @@ export default function Dashboard() {
                         // let input = document.querySelector('input')
                         event.preventDefault();
 
-                        const all_Data = {id: new Date().getTime().toString(), name: taskInput}
+                        const all_Data = { id: new Date().getTime().toString(), name: taskInput }
                         console.log(all_Data);
-                        
+
                         taskInput.trim().length !== 0 && setTasks([...tasks, all_Data]);
                         taskInput.trim().length !== 0 && setMessage("Success !!");
                         // taskInput.trim().length !== 0 && 
@@ -191,8 +193,7 @@ export default function Dashboard() {
                       <i className='bx bxs-trash text-xl cursor-pointer'></i>
                       <p>Delete All</p>
                     </div>
-
-
+                    
                   </div>
                 </div>
               </section>
@@ -204,22 +205,39 @@ export default function Dashboard() {
 
                     tasks.map((item) => {
 
+                      let status = localStorage.getItem(`checked?${item.id}`)
+                     
+                      if (status) {
+                        // document.getElementById(`${item.id}`).checked = status
+                      }
                       // console.log(item);
                       return (
-                        <div key={item.id} className={`flex w-[95vw] h-auto lg:w-[30vw] px-4 py-2 rounded-lg ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} items-center justify-between`}>
-                          <h1 className='text-2xl break-none overflow-x-scroll w-full h-full'>{item.name}</h1>
+                        <div key={item.id} id={item.id} className={`${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} task-box flex w-[95vw] sm:w-[70vw] h-auto lg:w-[30vw] px-4 py-2 rounded-lg items-center justify-between`}>
+
+                          <input type="checkbox" className='chbx' name="done" id={item.id} onClick={() => {
+                            let ch = document.getElementById(`${item.id}`)
+                            if(!ch.checked){
+                               localStorage.setItem(`checked?${item.id}`, ch.checked)
+                            }
+
+                          }} />
+
+                          <label htmlFor={item.id} className='text-2xl break-none overflow-x-scroll w-full h-full pl-3'><h1>{item.name}</h1></label>
 
                           <div className="icons flex gap-4 pl-3">
                             <i className='bx bx-edit theme text-xl cursor-pointer'
-                            
-                            onClick={()=>{
+                              onClick={() => {
 
-
-                            }}></i>
+                              }}></i>
                             <i className='bx bxs-trash theme text-xl cursor-pointer'
                               onClick={() => {
-                                filtered(item.id);
-                                setMessage("Deleted !!");
+                                
+                                document.getElementById(item.id).style.animation = "animate 0.5s 1 linear" ;
+
+                                setTimeout(()=>{
+                                  filtered(item.id);
+                                  setMessage("Deleted !!");
+                                },450)
 
                               }}></i>
                           </div>
@@ -228,7 +246,7 @@ export default function Dashboard() {
                     })
                     :  // ternary operator
 
-                    <div className={`mx-8 md:mx-auto text-xl px-12 py-2 rounded-lg ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} self-center`}>
+                    <div className={`mx-8 md:mx-auto text-xl px-12 py-2 rounded-lg self-center`}>
                       <h2>No pending work in your toDo :)</h2>
                     </div>
 
@@ -242,7 +260,7 @@ export default function Dashboard() {
             {/* Update Username */}
 
             <div className="changeUsername py-12 md:mx-24 max-w-xs mx-auto md:items-start gap-4 justify-center flex flex-col">
-              <button className={`${dark ? 'text-white' : 'text-black'} text-sm underline underline-offset-4`} onClick={() => setShowUpdt(!showUpdt)}>Change Username ?</button>
+              <button className={`text-sm underline underline-offset-4`} onClick={() => setShowUpdt(!showUpdt)}>Change Username ?</button>
 
               {
 
@@ -257,7 +275,7 @@ export default function Dashboard() {
                     setMessage("Success !!")
                     // localStorage.setItem('localUser' , user)
                   }}>
-                  <input type="text" value={input} className={`px-4 text-sm py-1 focus:outline-none rounded ${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'}`}
+                  <input type="text" value={input} className={`${dark ? 'bg-gray-800 text-white' : 'bg-gray-300 text-black'} px-4 text-sm py-1 focus:outline-none rounded `}
                     onChange={(e) => {
                       setInput(e.target.value)
                     }} />
@@ -271,3 +289,8 @@ export default function Dashboard() {
     </>
   )
 }
+
+// manager admini
+// name
+// emial
+// phone

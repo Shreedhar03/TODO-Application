@@ -13,7 +13,7 @@ export default function WelcomePage() {
     return (
         <>
 
-            <div className={`flex-1 container-1 ${dark?'bg-black text-white':''} flex justify-center text-center`}>
+            <div className={`flex-1 container-1 flex justify-center text-center`}>
                 <div className="hero flex flex-col items-center justify-center max-w-2xl m-auto gap-4 py-20">
                     <p className='text-4xl md:text-6xl'>
                         Organize your<br></br>
