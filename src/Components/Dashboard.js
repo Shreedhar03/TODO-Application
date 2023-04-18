@@ -232,12 +232,12 @@ export default function Dashboard() {
                             <i className='bx bxs-trash theme text-xl cursor-pointer'
                               onClick={() => {
                                 
-                                document.getElementById(item.id).style.animation = "animate 0.5s 1 linear" ;
+                                document.getElementById(item.id).style.animation = "animate 0.5s infinite linear" ;
 
                                 setTimeout(()=>{
                                   filtered(item.id);
                                   setMessage("Deleted !!");
-                                },450)
+                                },500)
 
                               }}></i>
                           </div>
